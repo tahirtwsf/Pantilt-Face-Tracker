@@ -1,0 +1,32 @@
+# This was my first stab at the movement function for the pan-tilt module, but this library ends up causing too much
+# noise in the signal to the servos causing it to jitter.
+
+def convert_angle(servo, angle):
+    pwm = GPIO.PWM(servo, 50) 
+
+    # Start the signal with a duty cycle of 8%. (A duty cycle is the % of a period in which the wave is "active", meaning on).
+    pwm.start(8)
+
+    # convert the angle detected later to an appropriate duty cycle for the servos and apply it.
+    dutyCycle = angle / 12. + 3.
+    pwm.ChangeDutyCycle(dutyCycle)
+    time.sleep(0.3)
+
+    # Stops to prepare for next signal change.    
+    pwm.stop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
